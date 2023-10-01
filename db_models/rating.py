@@ -16,4 +16,4 @@ class Rating(BaseModel):
 
     product_id = Column(Integer, ForeignKey('products.id'))
 
-    product = relationship('Product', back_populates='rating')
+    product = relationship('Product', back_populates='rating_count')

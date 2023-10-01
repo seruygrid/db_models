@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String, JSON
 from sqlalchemy.orm import relationship
 
+from .image import product_type_image_association
 from .base import BaseModel
 
 
@@ -15,5 +16,9 @@ class ProductType(BaseModel):
     translated_languages = Column(JSON)
 
     banners = relationship('Banner', back_populates='product_type')
-    promotional_sliders = relationship('Image', back_populates='product_types')
+    promotional_sliders = relationship(
+        'Image',
+        secondary=product_type_image_association,
+        back_populates='product_types',
+    )
     products = relationship('Product', back_populates='type')

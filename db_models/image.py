@@ -24,19 +24,18 @@ class Image(BaseModel):
     original = Column(String, nullable=False)
     thumbnail = Column(String, nullable=False)
 
-    author_image = relationship('Author', back_populates='image')
-    author_cover_image = relationship('Author', back_populates='cover_image')
+    author_image = relationship('Author', back_populates='image', foreign_keys='[Author.image_id]')
+    author_cover_image = relationship('Author', back_populates='cover_image', foreign_keys='[Author.cover_image_id]')
 
-    shops_logos = relationship('Shop', back_populates='logo')
-    categories = relationship('Category', back_populates='image')
-    shops_cover_image = relationship('Shop', back_populates='cover_image')
-    banners = relationship('Banner', back_populates='images')
+    shops_logos = relationship('Shop', back_populates='logo', foreign_keys='[Shop.logo_id]')
+    shops_cover_image = relationship('Shop', back_populates='cover_image', foreign_keys='[Shop.cover_image_id]')
+    banners = relationship('Banner', back_populates='image')
     product_types = relationship(
         'ProductType',
         secondary=product_type_image_association,
         back_populates='promotional_sliders',
     )
-    promotional_sliders = relationship(
+    category_types = relationship(
         'CategoryType',
         secondary=category_promotion_image_association,
         back_populates='promotional_sliders',

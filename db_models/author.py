@@ -24,4 +24,4 @@ class Author(BaseModel):
     image = relationship('Image', back_populates='author_image', foreign_keys=[image_id])
     cover_image = relationship('Image', back_populates='author_cover_image', foreign_keys=[cover_image_id])
     products = relationship('Product', back_populates='author')
-    shops = relationship('Shop', back_populates='author')
+    shops = relationship('Shop', back_populates='owner')
