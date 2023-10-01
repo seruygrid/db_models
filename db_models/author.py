@@ -21,7 +21,7 @@ class Author(BaseModel):
     image_id = Column(Integer, ForeignKey('images.id'))
     cover_image_id = Column(Integer, ForeignKey('images.id'))
 
-    image = relationship('Image', back_populates='author_image')
-    cover_image = relationship('Image', back_populates='author_cover_image')
+    image = relationship('Image', back_populates='author_image', foreign_keys=[image_id])
+    cover_image = relationship('Image', back_populates='author_cover_image', foreign_keys=[cover_image_id])
     products = relationship('Product', back_populates='author')
     shops = relationship('Shop', back_populates='author')
