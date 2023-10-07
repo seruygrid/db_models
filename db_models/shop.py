@@ -16,6 +16,7 @@ class Shop(BaseModel):
     cover_image_id = Column(Integer, ForeignKey('images.id'))
     owner_id = Column(Integer, ForeignKey('authors.id'), nullable=False)
     address_id = Column(Integer, ForeignKey('addresses.id'))
+    settings_id = Column(Integer, ForeignKey('shop_settings.id'))
 
     logo = relationship('Image', back_populates='shops_logos', foreign_keys=[logo_id])
     cover_image = relationship('Image', back_populates='shops_cover_image', foreign_keys=[cover_image_id])
