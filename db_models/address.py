@@ -13,4 +13,4 @@ class Address(BaseModel):
     country = Column(String, nullable=False)
     street_address = Column(String, nullable=False)
 
-    shops = relationship('Product', back_populates='address')
+    shops = relationship('Shop', back_populates='address')

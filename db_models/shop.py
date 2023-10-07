@@ -21,5 +21,5 @@ class Shop(BaseModel):
     cover_image = relationship('Image', back_populates='shops_cover_image', foreign_keys=[cover_image_id])
     owner = relationship('Author', back_populates='shops')
     products = relationship('Product', back_populates='shop')
-    address = relationship('Address', back_populates='shops')
-    settings = relationship('ShopSettings', back_populates='shop')
+    address = relationship('Address', back_populates='shops', foreign_keys=[address_id])
+    settings = relationship('ShopSetting', back_populates='shop')

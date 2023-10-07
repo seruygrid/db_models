@@ -13,5 +13,5 @@ class ShopSetting(BaseModel):
 
     location_id = Column(Integer, ForeignKey('locations.id'))
 
-    shops = relationship('Product', back_populates='address')
+    shop = relationship('Shop', back_populates='settings')
     location = relationship('Location', back_populates='shop_settings')
