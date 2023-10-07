@@ -17,6 +17,13 @@ category_promotion_image_association = Table(
     Column('image_id', Integer, ForeignKey('images.id'))
 )
 
+product_gallery_image_association = Table(
+    'product_gallery_image_association',
+    Base.metadata,
+    Column('product_gallery_id', Integer, ForeignKey('products.id')),
+    Column('image_id', Integer, ForeignKey('images.id'))
+)
+
 
 class Image(BaseModel):
     __tablename__ = 'images'
@@ -27,7 +34,8 @@ class Image(BaseModel):
     author_image = relationship('Author', back_populates='image', foreign_keys='[Author.image_id]')
     author_cover_image = relationship('Author', back_populates='cover_image', foreign_keys='[Author.cover_image_id]')
 
-    products = relationship('Product', back_populates='image',)
+    products = relationship('Product', back_populates='image')
+    product_gallery = relationship('Product', back_populates='gallery', secondary=product_gallery_image_association)
     shops_logos = relationship('Shop', back_populates='logo', foreign_keys='[Shop.logo_id]')
     shops_cover_image = relationship('Shop', back_populates='cover_image', foreign_keys='[Shop.cover_image_id]')
     banners = relationship('Banner', back_populates='image')

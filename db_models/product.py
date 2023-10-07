@@ -11,6 +11,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import relationship
 
 from .base import BaseModel
+from .image import product_gallery_image_association
 
 
 class Product(BaseModel):
@@ -55,6 +56,7 @@ class Product(BaseModel):
     shipping_class_id = Column(Integer, ForeignKey('shipping_classes.id'))
 
     image = relationship('Image', back_populates='products')
+    gallery = relationship('Image', back_populates='product_gallery', secondary=product_gallery_image_association)
     author = relationship('Author', back_populates='products')
     type = relationship('ProductType', back_populates='products')
     shop = relationship('Shop', back_populates='products')
