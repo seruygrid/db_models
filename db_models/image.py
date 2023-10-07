@@ -27,6 +27,7 @@ class Image(BaseModel):
     author_image = relationship('Author', back_populates='image', foreign_keys='[Author.image_id]')
     author_cover_image = relationship('Author', back_populates='cover_image', foreign_keys='[Author.cover_image_id]')
 
+    products = relationship('Product', back_populates='image',)
     shops_logos = relationship('Shop', back_populates='logo', foreign_keys='[Shop.logo_id]')
     shops_cover_image = relationship('Shop', back_populates='cover_image', foreign_keys='[Shop.cover_image_id]')
     banners = relationship('Banner', back_populates='image')

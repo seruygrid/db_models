@@ -48,11 +48,13 @@ class Product(BaseModel):
     translated_languages = Column(JSON)
     my_review = Column(String)
 
+    image_id = Column(Integer, ForeignKey('images.id'))
     author_id = Column(Integer, ForeignKey('authors.id'))
     type_id = Column(Integer, ForeignKey('product_types.id'))
     shop_id = Column(Integer, ForeignKey('shops.id'))
     shipping_class_id = Column(Integer, ForeignKey('shipping_classes.id'))
 
+    image = relationship('Image', back_populates='products')
     author = relationship('Author', back_populates='products')
     type = relationship('ProductType', back_populates='products')
     shop = relationship('Shop', back_populates='products')
