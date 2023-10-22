@@ -9,6 +9,8 @@ class CategoryType(BaseModel):
     __tablename__ = 'category_types'
 
     name = Column(String, nullable=False)
+    slug = Column(String, unique=True, nullable=False)
+    icon = Column(String)
     language = Column(String(2), nullable=False)
     translated_languages = Column(JSON)
     settings = Column(JSON)
@@ -19,3 +21,4 @@ class CategoryType(BaseModel):
         back_populates='category_types',
     )
     categories = relationship('Category', back_populates='type')
+    child_categories = relationship('ChildCategory', back_populates='type')

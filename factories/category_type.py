@@ -10,6 +10,12 @@ class CategoryTypeFactory(BaseFactory):
         sqlalchemy_session_persistence = 'commit'
 
     name = factory.Faker('word')
+    slug = factory.Faker('slug')
+    icon = factory.Faker('uri')
     language = 'en'
     translated_languages = ['en']
-    settings = {}
+    settings = {
+        'isHome': True,
+        'layoutType': 'base',
+        'productCard': 'base',
+    }

@@ -1,14 +1,15 @@
 import factory
 from factory import SubFactory
 
+from . import CategoryFactory
 from .category_type import CategoryTypeFactory
 from .base import BaseFactory
-from ..db_models import Category
+from ..db_models import ChildCategory
 
 
-class CategoryFactory(BaseFactory):
+class ChildCategoryFactory(BaseFactory):
     class Meta:
-        model = Category
+        model = ChildCategory
         sqlalchemy_session_persistence = 'commit'
 
     name = factory.Faker('word')
@@ -19,13 +20,5 @@ class CategoryFactory(BaseFactory):
     language = 'en'
     translated_languages = ['en']
 
+    parent = SubFactory(CategoryFactory)
     type = SubFactory(CategoryTypeFactory)
-
-    @factory.post_generation
-    def children(self, create, extracted, **_):
-        if not create:
-            return
-
-        if extracted:
-            for child in extracted:
-                self.children.append(child)

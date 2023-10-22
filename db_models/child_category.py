@@ -27,5 +27,5 @@ class ChildCategory(BaseModel):
     type_id = Column(Integer, ForeignKey('category_types.id'), nullable=False)
 
     parent = relationship('Category', remote_side='Category.id')
-    type = relationship('CategoryType', back_populates='categories')
+    type = relationship('CategoryType', back_populates='child_categories')
     products = relationship('Product', secondary=product_child_category_association, back_populates='child_categories')
