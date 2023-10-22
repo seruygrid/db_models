@@ -11,6 +11,8 @@ from sqlalchemy import (
 from sqlalchemy.orm import relationship
 
 from .base import BaseModel
+from .category import product_category_association
+from .child_category import product_child_category_association
 from .image import product_gallery_image_association
 
 
@@ -64,6 +66,11 @@ class Product(BaseModel):
     rating_count = relationship('Rating', back_populates='product')
     categories = relationship(
         'Category',
-        secondary='product_category_association',
+        secondary=product_category_association,
+        back_populates='products',
+    )
+    child_categories = relationship(
+        'ChildCategory',
+        secondary=product_child_category_association,
         back_populates='products',
     )

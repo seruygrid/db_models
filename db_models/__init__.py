@@ -1,7 +1,8 @@
 from .base import metadata, Base
 from .author import Author
 from .banner import Banner
-from .category import Category, product_type_image_association
+from .category import Category, product_category_association
+from .child_category import ChildCategory, product_child_category_association
 from .category_type import CategoryType
 from .image import (
     Image,
