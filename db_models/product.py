@@ -52,14 +52,14 @@ class Product(BaseModel):
     my_review = Column(String)
 
     image_id = Column(Integer, ForeignKey('images.id'))
-    author_id = Column(Integer, ForeignKey('authors.id'))
+    author_id = Column(Integer, ForeignKey('shop_owners.id'))
     type_id = Column(Integer, ForeignKey('product_types.id'))
     shop_id = Column(Integer, ForeignKey('shops.id'))
     shipping_class_id = Column(Integer, ForeignKey('shipping_classes.id'))
 
     image = relationship('Image', back_populates='products')
     gallery = relationship('Image', back_populates='product_gallery', secondary=product_gallery_image_association)
-    author = relationship('Author', back_populates='products')
+    author = relationship('ShopOwner', back_populates='products')
     type = relationship('ProductType', back_populates='products')
     shop = relationship('Shop', back_populates='products')
     shipping_class = relationship('ShippingClass', back_populates='products')

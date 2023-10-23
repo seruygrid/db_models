@@ -1,5 +1,4 @@
 from .base import metadata, Base
-from .author import Author
 from .banner import Banner
 from .category import Category, product_category_association
 from .child_category import ChildCategory, product_child_category_association
@@ -18,3 +17,5 @@ from .shop import Shop
 from .address import Address
 from .location import Location
 from .shop_setting import ShopSetting
+from .owner_profile import OwnerProfile
+from .shop_owner import ShopOwner
