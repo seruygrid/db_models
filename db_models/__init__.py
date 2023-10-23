@@ -19,3 +19,4 @@ from .location import Location
 from .shop_setting import ShopSetting
 from .owner_profile import OwnerProfile
 from .shop_owner import ShopOwner
+from .author import Author
