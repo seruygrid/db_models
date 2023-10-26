@@ -23,8 +23,8 @@ class Category(BaseModel):
     translated_languages = Column(JSON)
     deleted_at = Column(TIMESTAMP(timezone=True), nullable=True)
 
-    type_id = Column(Integer, ForeignKey('category_types.id'), nullable=False)
+    type_id = Column(Integer, ForeignKey('types.id'), nullable=False)
 
-    type = relationship('CategoryType', back_populates='categories')
+    type = relationship('Type', back_populates='categories')
     children = relationship('ChildCategory', back_populates='parent')
     products = relationship('Product', secondary=product_category_association, back_populates='categories')

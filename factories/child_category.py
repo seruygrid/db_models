@@ -1,8 +1,8 @@
 import factory
 from factory import SubFactory
 
-from . import CategoryFactory
-from .category_type import CategoryTypeFactory
+from .category import CategoryFactory
+from .type import TypeFactory
 from .base import BaseFactory
 from ..db_models import ChildCategory
 
@@ -21,4 +21,4 @@ class ChildCategoryFactory(BaseFactory):
     translated_languages = ['en']
 
     parent = SubFactory(CategoryFactory)
-    type = SubFactory(CategoryTypeFactory)
+    type = SubFactory(TypeFactory)

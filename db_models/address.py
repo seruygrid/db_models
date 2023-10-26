@@ -14,3 +14,5 @@ class Address(BaseModel):
     street_address = Column(String, nullable=False)
 
     shops = relationship('Shop', back_populates='address')
+    orders_ship = relationship('Order', back_populates='shipping_address')
+    orders_bill = relationship('Order', back_populates='billing_address')

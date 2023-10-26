@@ -14,6 +14,8 @@ from .base import BaseModel
 from .category import product_category_association
 from .child_category import product_child_category_association
 from .image import product_gallery_image_association
+from .order import order_products_association
+from .order_child import child_order_products_association
 
 
 class Product(BaseModel):
@@ -53,14 +55,14 @@ class Product(BaseModel):
 
     image_id = Column(Integer, ForeignKey('images.id'))
     author_id = Column(Integer, ForeignKey('authors.id'))
-    type_id = Column(Integer, ForeignKey('product_types.id'))
+    type_id = Column(Integer, ForeignKey('types.id'))
     shop_id = Column(Integer, ForeignKey('shops.id'))
     shipping_class_id = Column(Integer, ForeignKey('shipping_classes.id'))
 
     image = relationship('Image', back_populates='products')
     gallery = relationship('Image', back_populates='product_gallery', secondary=product_gallery_image_association)
     author = relationship('Author', back_populates='products')
-    type = relationship('ProductType', back_populates='products')
+    type = relationship('Type', back_populates='products')
     shop = relationship('Shop', back_populates='products')
     shipping_class = relationship('ShippingClass', back_populates='products')
     rating_count = relationship('Rating', back_populates='product')
@@ -72,5 +74,15 @@ class Product(BaseModel):
     child_categories = relationship(
         'ChildCategory',
         secondary=product_child_category_association,
+        back_populates='products',
+    )
+    orders = relationship(
+        'Order',
+        secondary=order_products_association,
+        back_populates='products',
+    )
+    child_orders = relationship(
+        'Order',
+        secondary=child_order_products_association,
         back_populates='products',
     )

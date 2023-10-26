@@ -3,17 +3,10 @@ from sqlalchemy.orm import relationship
 
 from .base import BaseModel, Base
 
-product_type_image_association = Table(
-    'product_type_image_association',
-    Base.metadata,
-    Column('product_type_id', Integer, ForeignKey('product_types.id')),
-    Column('image_id', Integer, ForeignKey('images.id'))
-)
-
-category_promotion_image_association = Table(
+type_promotion_image_association = Table(
     'category_promotion_image_association',
     Base.metadata,
-    Column('category_type_id', Integer, ForeignKey('category_types.id')),
+    Column('category_type_id', Integer, ForeignKey('types.id')),
     Column('image_id', Integer, ForeignKey('images.id'))
 )
 
@@ -39,13 +32,8 @@ class Image(BaseModel):
     shops_cover_image = relationship('Shop', back_populates='cover_image', foreign_keys='[Shop.cover_image_id]')
     banners = relationship('Banner', back_populates='image')
     profiles = relationship('OwnerProfile', back_populates='avatar')
-    product_types = relationship(
-        'ProductType',
-        secondary=product_type_image_association,
-        back_populates='promotional_sliders',
-    )
-    category_types = relationship(
-        'CategoryType',
-        secondary=category_promotion_image_association,
+    types = relationship(
+        'Type',
+        secondary=type_promotion_image_association,
         back_populates='promotional_sliders',
     )

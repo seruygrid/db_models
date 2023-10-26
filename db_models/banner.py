@@ -11,8 +11,8 @@ class Banner(BaseModel):
     title = Column(String, nullable=False)
     description = Column(String, nullable=False)
 
-    product_type_id = Column(Integer, ForeignKey('product_types.id'))
+    product_type_id = Column(Integer, ForeignKey('types.id'))
     image_id = Column(Integer, ForeignKey('images.id'))
 
-    product_type = relationship('ProductType', back_populates='banners')
+    product_type = relationship('Type', back_populates='banners')
     image = relationship('Image', back_populates='banners')

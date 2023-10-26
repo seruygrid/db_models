@@ -24,3 +24,4 @@ class Shop(BaseModel):
     products = relationship('Product', back_populates='shop')
     address = relationship('Address', back_populates='shops', foreign_keys=[address_id])
     settings = relationship('ShopSetting', back_populates='shop')
+    child_orders = relationship('ChildOrder', back_populates='shop')

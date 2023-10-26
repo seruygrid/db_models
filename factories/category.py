@@ -1,7 +1,7 @@
 import factory
 from factory import SubFactory
 
-from .category_type import CategoryTypeFactory
+from .type import TypeFactory
 from .base import BaseFactory
 from ..db_models import Category
 
@@ -19,7 +19,7 @@ class CategoryFactory(BaseFactory):
     language = 'en'
     translated_languages = ['en']
 
-    type = SubFactory(CategoryTypeFactory)
+    type = SubFactory(TypeFactory)
 
     @factory.post_generation
     def children(self, create, extracted, **_):

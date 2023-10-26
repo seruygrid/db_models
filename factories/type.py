@@ -1,12 +1,12 @@
 import factory
 
+from ..db_models import Type
 from .base import BaseFactory
-from ..db_models import ProductType
 
 
-class ProductTypeFactory(BaseFactory):
+class TypeFactory(BaseFactory):
     class Meta:
-        model = ProductType
+        model = Type
         sqlalchemy_session_persistence = 'commit'
 
     name = factory.Faker('word')
