@@ -15,5 +15,4 @@ class ShopOwner(BaseModel):
     profile_id = Column(Integer, ForeignKey('owner_profiles.id'))
 
     shops = relationship('Shop', back_populates='owner')
-    products = relationship('Product', back_populates='author')
     profile = relationship('OwnerProfile', back_populates='shop_owner')

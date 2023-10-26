@@ -1,9 +1,9 @@
 import factory
 
 from .type import TypeFactory
+from .author import AuthorFactory
 from .shop import ShopFactory
 from .shipping import ShippingFactory
-from .author import AuthorFactory
 from .image import ImageFactory
 from .base import BaseFactory
 from ..db_models import Product

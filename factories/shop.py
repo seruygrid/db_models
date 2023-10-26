@@ -1,7 +1,7 @@
 import factory
 
 from .shop_settings import ShopSettingFactory
-from .author import AuthorFactory
+from .shop_owner import ShopOwnerFactory
 from .address import AddressFactory
 from .image import ImageFactory
 from .base import BaseFactory
@@ -20,6 +20,6 @@ class ShopFactory(BaseFactory):
 
     logo = factory.SubFactory(ImageFactory)
     cover_image = factory.SubFactory(ImageFactory)
-    owner = factory.SubFactory(AuthorFactory)
+    owner = factory.SubFactory(ShopOwnerFactory)
     address = factory.SubFactory(AddressFactory)
     settings = factory.SubFactory(ShopSettingFactory)

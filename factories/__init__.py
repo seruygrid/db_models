@@ -1,5 +1,4 @@
 from .category import CategoryFactory
-from .type import CategoryTypeFactory
 from .child_category import ChildCategoryFactory
 from .image import ImageFactory
 from .author import AuthorFactory
@@ -10,3 +9,6 @@ from .shop import ShopFactory
 from .shipping import ShippingFactory
 from .product import ProductFactory
 from .rating import RatingFactory
+from .owner_profile import OwnerProfileFactory
+from .shop_owner import ShopOwnerFactory
+from .author import AuthorFactory
