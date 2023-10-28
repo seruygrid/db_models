@@ -418,6 +418,8 @@ def upgrade() -> None:
         sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
         sa.PrimaryKeyConstraint('id')
     )
+    op.execute('CREATE SEQUENCE child_tracking_number_sequence;')
+    op.execute('CREATE SEQUENCE tracking_number_sequence;')
     # ### end Alembic commands ###
 
 

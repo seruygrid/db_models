@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DECIMAL, ForeignKey, Table
+from sqlalchemy import Column, String, Integer, DECIMAL, ForeignKey, Table, func
 from sqlalchemy.orm import relationship
 
 from .base import BaseModel, Base
@@ -14,7 +14,12 @@ child_order_products_association = Table(
 class ChildOrder(BaseModel):
     __tablename__ = 'child_orders'
 
-    tracking_number = Column(String, nullable=False)
+    tracking_number = Column(
+        Integer,
+        unique=True,
+        nullable=False,
+        server_default=func.nextval('child_tracking_number_sequence'),
+    )
     customer_contact = Column(String)
     amount = Column(DECIMAL)
     sales_tax = Column(DECIMAL)
