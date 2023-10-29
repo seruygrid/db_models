@@ -1,8 +1,8 @@
 """init tables
 
-Revision ID: 1acd5f6d0de4
+Revision ID: 06f0e85b0626
 Revises: 
-Create Date: 2023-10-26 16:25:37.766436
+Create Date: 2023-10-29 13:21:58.609427
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision: str = '1acd5f6d0de4'
+revision: str = '06f0e85b0626'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -28,8 +28,10 @@ def upgrade() -> None:
         sa.Column('country', sa.String(), nullable=False),
         sa.Column('street_address', sa.String(), nullable=False),
         sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
-        sa.Column('created_at', postgresql.TIMESTAMP(timezone=True), server_default=sa.text('now()'), nullable=False),
-        sa.Column('updated_at', postgresql.TIMESTAMP(timezone=True), server_default=sa.text('now()'), nullable=False),
+        sa.Column('created_at', postgresql.TIMESTAMP(timezone=True), server_default=sa.text('now()'),
+                  nullable=False),
+        sa.Column('updated_at', postgresql.TIMESTAMP(timezone=True), server_default=sa.text('now()'),
+                  nullable=False),
         sa.PrimaryKeyConstraint('id')
     )
     op.create_table(
@@ -169,7 +171,8 @@ def upgrade() -> None:
     )
     op.create_table(
         'orders',
-        sa.Column('tracking_number', sa.String(), nullable=False),
+        sa.Column('tracking_number', sa.Integer(),
+                  server_default=sa.text("nextval('child_tracking_number_sequence')"), nullable=False),
         sa.Column('customer_contact', sa.String(), nullable=True),
         sa.Column('amount', sa.DECIMAL(), nullable=True),
         sa.Column('sales_tax', sa.DECIMAL(), nullable=True),
@@ -195,7 +198,8 @@ def upgrade() -> None:
         sa.ForeignKeyConstraint(['billing_address_id'], ['addresses.id'], ),
         sa.ForeignKeyConstraint(['customer_id'], ['customers.id'], ),
         sa.ForeignKeyConstraint(['shipping_address_id'], ['addresses.id'], ),
-        sa.PrimaryKeyConstraint('id')
+        sa.PrimaryKeyConstraint('id'),
+        sa.UniqueConstraint('tracking_number')
     )
     op.create_table(
         'owner_profiles',
@@ -289,7 +293,8 @@ def upgrade() -> None:
     )
     op.create_table(
         'child_orders',
-        sa.Column('tracking_number', sa.String(), nullable=False),
+        sa.Column('tracking_number', sa.Integer(),
+                  server_default=sa.text("nextval('child_tracking_number_sequence')"), nullable=False),
         sa.Column('customer_contact', sa.String(), nullable=True),
         sa.Column('amount', sa.DECIMAL(), nullable=True),
         sa.Column('sales_tax', sa.DECIMAL(), nullable=True),
@@ -313,7 +318,8 @@ def upgrade() -> None:
                   nullable=False),
         sa.ForeignKeyConstraint(['parent_id'], ['orders.id'], ),
         sa.ForeignKeyConstraint(['shop_id'], ['shops.id'], ),
-        sa.PrimaryKeyConstraint('id')
+        sa.PrimaryKeyConstraint('id'),
+        sa.UniqueConstraint('tracking_number')
     )
     op.create_table(
         'products',
