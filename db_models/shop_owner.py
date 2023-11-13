@@ -12,7 +12,7 @@ class ShopOwner(BaseModel):
     email_verified_at = Column(TIMESTAMP(timezone=True), nullable=True)
     is_active = Column(Integer)
 
-    profile_id = Column(Integer, ForeignKey('owner_profiles.id'))
+    profile_id = Column(Integer, ForeignKey('profiles.id'))
 
     shops = relationship('Shop', back_populates='owner')
     profile = relationship('OwnerProfile', back_populates='shop_owner')

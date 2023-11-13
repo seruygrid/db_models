@@ -4,16 +4,15 @@ from sqlalchemy.orm import relationship
 from .base import BaseModel
 
 
-class OwnerProfile(BaseModel):
-    __tablename__ = 'owner_profiles'
+class Profile(BaseModel):
+    __tablename__ = 'profiles'
 
     bio = Column(String)
     socials = Column(JSON, nullable=True)
     contact = Column(String)
 
-    customer_id = Column(Integer)
-
     avatar_id = Column(Integer, ForeignKey('images.id'))
 
     avatar = relationship('Image', back_populates='profiles')
+    customer = relationship('Customer', back_populates='profile')
     shop_owner = relationship('ShopOwner', back_populates='profile')
