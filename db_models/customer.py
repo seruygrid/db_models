@@ -15,6 +15,7 @@ class Customer(BaseModel):
     __tablename__ = 'customers'
 
     name = Column(String, nullable=False)
+    sub = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False)
     email_verified_at = Column(TIMESTAMP(timezone=True), nullable=True)
     is_active = Column(Boolean, default=False)
