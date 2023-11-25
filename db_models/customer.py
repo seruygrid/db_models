@@ -22,11 +22,10 @@ class Customer(BaseModel):
 
     shop_id = Column(Integer, ForeignKey('shops.id'))
     profile_id = Column(Integer, ForeignKey('profiles.id'))
-    address_id = Column(Integer, ForeignKey('addresses.id'))
+    address_id = Column(Integer, ForeignKey('customer_addresses.id'))
 
     shop = relationship('Shop', back_populates='customer')
     orders = relationship('Order', back_populates='customer')
     profile = relationship('Profile', back_populates='customer')
-    address = relationship('Address', back_populates='customer')
-    customer_address = relationship('CustomerAddress', back_populates='customer')
+    address = relationship('CustomerAddress', back_populates='customer')
     permissions = relationship('Permission', secondary=customer_permission_association, back_populates='customers')

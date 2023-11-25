@@ -16,5 +16,4 @@ class Address(BaseModel):
     shops = relationship('Shop', back_populates='address')
     orders_ship = relationship('Order', back_populates='shipping_address', foreign_keys='[Order.shipping_address_id]')
     orders_bill = relationship('Order', back_populates='billing_address', foreign_keys='[Order.billing_address_id]')
-    customer = relationship('Customer', back_populates='address')
     customer_address = relationship('CustomerAddress', back_populates='address')
