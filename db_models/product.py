@@ -25,9 +25,9 @@ class Product(BaseModel):
     name = Column(String, nullable=False)
     slug = Column(String, unique=True, nullable=False)
     description = Column(String, nullable=False)
+    language = Column(String(2), nullable=False)
     price = Column(Float, nullable=False)
     sale_price = Column(Float)
-    language = Column(String(2), nullable=False)
     min_price = Column(Float, nullable=False)
     max_price = Column(Float, nullable=False)
     sku = Column(String, unique=True)
@@ -82,7 +82,7 @@ class Product(BaseModel):
         back_populates='products',
     )
     child_orders = relationship(
-        'Order',
+        'ChildOrder',
         secondary=child_order_products_association,
         back_populates='products',
     )

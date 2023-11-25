@@ -31,7 +31,7 @@ class Image(BaseModel):
     shops_logos = relationship('Shop', back_populates='logo', foreign_keys='[Shop.logo_id]')
     shops_cover_image = relationship('Shop', back_populates='cover_image', foreign_keys='[Shop.cover_image_id]')
     banners = relationship('Banner', back_populates='image')
-    profiles = relationship('OwnerProfile', back_populates='avatar')
+    profiles = relationship('Profile', back_populates='avatar')
     types = relationship(
         'Type',
         secondary=type_promotion_image_association,

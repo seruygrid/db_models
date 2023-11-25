@@ -14,16 +14,19 @@ customer_permission_association = Table(
 class Customer(BaseModel):
     __tablename__ = 'customers'
 
-    name = Column(String, nullable=False)
     sub = Column(String, nullable=False)
+    name = Column(String, nullable=False)
+    is_active = Column(Boolean, default=False)
     email = Column(String, unique=True, nullable=False)
     email_verified_at = Column(TIMESTAMP(timezone=True), nullable=True)
-    is_active = Column(Boolean, default=False)
 
     shop_id = Column(Integer, ForeignKey('shops.id'))
     profile_id = Column(Integer, ForeignKey('profiles.id'))
+    address_id = Column(Integer, ForeignKey('addresses.id'))
 
-    shop = relationship('Shop', back_populates='user')
+    shop = relationship('Shop', back_populates='customer')
+    orders = relationship('Order', back_populates='customer')
     profile = relationship('Profile', back_populates='customer')
-    address = relationship('Address', back_populates='shops')
+    address = relationship('Address', back_populates='customer')
+    customer_address = relationship('CustomerAddress', back_populates='customer')
     permissions = relationship('Permission', secondary=customer_permission_association, back_populates='customers')
