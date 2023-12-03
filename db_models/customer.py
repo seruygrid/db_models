@@ -25,6 +25,7 @@ class Customer(BaseModel):
     address_id = Column(Integer, ForeignKey('customer_addresses.id'))
 
     shop = relationship('Shop', back_populates='customer')
+    shops = relationship('Shop', back_populates='owner')
     orders = relationship('Order', back_populates='customer')
     profile = relationship('Profile', back_populates='customer')
     address = relationship('CustomerAddress', back_populates='customer')

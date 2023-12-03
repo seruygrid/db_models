@@ -14,7 +14,6 @@ from .shop import Shop
 from .address import Address
 from .location import Location
 from .shop_setting import ShopSetting
-from .shop_owner import ShopOwner
 from .author import Author
 from .type import Type
 from .customer import Customer, customer_permission_association

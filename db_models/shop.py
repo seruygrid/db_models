@@ -16,9 +16,9 @@ class Shop(BaseModel):
     address_id = Column(Integer, ForeignKey('addresses.id'))
     cover_image_id = Column(Integer, ForeignKey('images.id'))
     settings_id = Column(Integer, ForeignKey('shop_settings.id'))
-    owner_id = Column(Integer, ForeignKey('shop_owners.id'), nullable=False)
+    owner_id = Column(Integer, ForeignKey('customers.id'), nullable=False)
 
-    owner = relationship('ShopOwner', back_populates='shops')
+    owner = relationship('Customer', back_populates='shops')
     products = relationship('Product', back_populates='shop')
     customer = relationship('Customer', back_populates='shop')
     settings = relationship('ShopSetting', back_populates='shop')
