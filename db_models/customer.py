@@ -20,13 +20,11 @@ class Customer(BaseModel):
     email = Column(String, unique=True, nullable=False)
     email_verified_at = Column(TIMESTAMP(timezone=True), nullable=True)
 
-    shop_id = Column(Integer, ForeignKey('shops.id'))
     profile_id = Column(Integer, ForeignKey('profiles.id'))
     address_id = Column(Integer, ForeignKey('customer_addresses.id'))
 
-    shop = relationship('Shop', back_populates='customer')
     shops = relationship('Shop', back_populates='owner')
     orders = relationship('Order', back_populates='customer')
     profile = relationship('Profile', back_populates='customer')
-    address = relationship('CustomerAddress', back_populates='customer')
+    address = relationship('CustomerAddress', back_populates='customer', foreign_keys=[address_id])
     permissions = relationship('Permission', secondary=customer_permission_association, back_populates='customers')

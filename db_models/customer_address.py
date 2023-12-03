@@ -23,5 +23,5 @@ class CustomerAddress(BaseModel):
     customer_id = Column(Integer, ForeignKey('customers.id'))
     address_id = Column(Integer, ForeignKey('addresses.id'))
 
-    customer = relationship('Customer', back_populates='customer_address')
+    customer = relationship('Customer', back_populates='address', foreign_keys='Customer.address_id')
     address = relationship('Address', back_populates='customer_address')

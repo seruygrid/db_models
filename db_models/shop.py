@@ -20,7 +20,6 @@ class Shop(BaseModel):
 
     owner = relationship('Customer', back_populates='shops')
     products = relationship('Product', back_populates='shop')
-    customer = relationship('Customer', back_populates='shop')
     settings = relationship('ShopSetting', back_populates='shop')
     child_orders = relationship('ChildOrder', back_populates='shop')
     logo = relationship('Image', back_populates='shops_logos', foreign_keys=[logo_id])
