@@ -30,7 +30,6 @@ class Product(BaseModel):
     sale_price = Column(Float, nullable=True)
     min_price = Column(Float, nullable=True)
     max_price = Column(Float, nullable=True)
-    quantity = Column(Integer, nullable=False)
     status = Column(String, nullable=False)
     unit = Column(String, nullable=False)
     deleted_at = Column(DateTime)
