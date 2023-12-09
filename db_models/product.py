@@ -55,14 +55,12 @@ class Product(BaseModel):
 
     image_id = Column(Integer, ForeignKey('images.id'))
     author_id = Column(Integer, ForeignKey('authors.id'))
-    type_id = Column(Integer, ForeignKey('types.id'))
     shop_id = Column(Integer, ForeignKey('shops.id'))
     shipping_class_id = Column(Integer, ForeignKey('shipping_classes.id'))
 
     image = relationship('Image', back_populates='products')
     gallery = relationship('Image', back_populates='product_gallery', secondary=product_gallery_image_association)
     author = relationship('Author', back_populates='products')
-    type = relationship('Type', back_populates='products')
     shop = relationship('Shop', back_populates='products')
     shipping_class = relationship('ShippingClass', back_populates='products')
     rating_count = relationship('Rating', back_populates='product')

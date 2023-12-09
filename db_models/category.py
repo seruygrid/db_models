@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, JSON, ForeignKey, Table, ARRAY, TIMESTAMP
+from sqlalchemy import Column, Integer, String, JSON, ForeignKey, Table, TIMESTAMP
 from sqlalchemy.orm import relationship
 
 from .base import BaseModel, Base
@@ -17,15 +17,13 @@ class Category(BaseModel):
     name = Column(String, nullable=False)
     slug = Column(String, unique=True, nullable=False)
     icon = Column(String)
-    # TODO make image relation
-    image = Column(ARRAY(String))
     details = Column(String)
     language = Column(String(2), nullable=False)
     translated_languages = Column(JSON)
     deleted_at = Column(TIMESTAMP(timezone=True), nullable=True)
 
-    type_id = Column(Integer, ForeignKey('types.id'), nullable=False)
+    image_id = Column(Integer, ForeignKey('images.id'))
 
-    type = relationship('Type', back_populates='categories')
+    image = relationship('Image', back_populates='category')
     children = relationship('ChildCategory', back_populates='parent')
     products = relationship('Product', secondary=product_category_association, back_populates='categories')
