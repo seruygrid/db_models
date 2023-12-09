@@ -26,3 +26,4 @@ class Image(BaseModel):
     banners = relationship('Banner', back_populates='image')
     profiles = relationship('Profile', back_populates='avatar')
     category = relationship('Category', back_populates='image')
+    child_category = relationship('ChildCategory', back_populates='image')

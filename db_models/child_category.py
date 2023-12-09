@@ -25,6 +25,6 @@ class ChildCategory(BaseModel):
     parent_id = Column(Integer, ForeignKey('categories.id'))
     image_id = Column(Integer, ForeignKey('images.id'))
 
-    image = relationship('Image', back_populates='category')
+    image = relationship('Image', back_populates='child_category')
     parent = relationship('Category', remote_side='Category.id')
     products = relationship('Product', secondary=product_child_category_association, back_populates='child_categories')
