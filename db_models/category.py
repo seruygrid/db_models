@@ -17,6 +17,7 @@ class Category(BaseModel):
     name = Column(String, nullable=False)
     slug = Column(String, unique=True, nullable=False)
     icon = Column(String)
+    # TODO make image relation
     image = Column(ARRAY(String))
     details = Column(String)
     language = Column(String(2), nullable=False)

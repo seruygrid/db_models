@@ -15,4 +15,3 @@ class Profile(BaseModel):
 
     avatar = relationship('Image', back_populates='profiles')
     customer = relationship('Customer', back_populates='profile')
-    shop_owner = relationship('ShopOwner', back_populates='profile')
