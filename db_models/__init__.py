@@ -10,7 +10,6 @@ from .shop import Shop
 from .address import Address
 from .location import Location
 from .shop_setting import ShopSetting
-from .author import Author
 from .customer import Customer, customer_permission_association
 from .order import Order, order_products_association
 from .order_child import ChildOrder, child_order_products_association

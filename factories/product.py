@@ -1,7 +1,6 @@
 import factory
 
 from .type import TypeFactory
-from .author import AuthorFactory
 from .shop import ShopFactory
 from .shipping import ShippingFactory
 from .image import ImageFactory
@@ -45,7 +44,6 @@ class ProductFactory(BaseFactory):
     unit = 'unit'
 
     image = factory.SubFactory(ImageFactory)
-    author = factory.SubFactory(AuthorFactory)
     type = factory.SubFactory(TypeFactory)
     shop = factory.SubFactory(ShopFactory)
     shipping_class = factory.SubFactory(ShippingFactory)
